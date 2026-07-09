@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/OPA.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organisation Du Patronat Algérien – ALLEZ Où VONT LES GAGNANTS</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                50: '#f0f4f8',
+                100: '#d9e2ec',
+                500: '#123b6d',
+                700: '#0d2b50',
+                800: '#0a2540',
+                900: '#061526',
+              },
+              gold: {
+                400: '#e5c158',
+                500: '#c39b2e',
+                600: '#b08b28',
+                700: '#8e6f1c',
+              },
+              cream: {
+                50: '#fdfcf9',
+                100: '#f8f5f0',
+                200: '#f0ebe1',
+              }
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+              serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            },
+            boxShadow: {
+              'luxury': '0 20px 40px -15px rgba(10, 37, 64, 0.12)',
+              'luxury-hover': '0 25px 50px -12px rgba(10, 37, 64, 0.25)',
+              'gold-glow': '0 0 25px -5px rgba(195, 155, 46, 0.4)',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="/src/assets/style.css" />
+  </head>
+  <body class="bg-[#F8F5F0] text-[#1F2937] font-sans antialiased selection:bg-[#C39B2E] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
