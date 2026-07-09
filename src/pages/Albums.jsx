@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageLightbox from '../components/ImageLightbox';
 
 export default function Albums() {
   const { t } = useTranslation();
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
   // 24 photos prédéfinies
   const photos = Array.from({ length: 24 }, (_, i) => `/images/Album photo/photo ${i + 1}.jpg`);
+  const lightboxImages = photos.map((src, i) => ({
+    src,
+    alt: `Photo OPA #${i + 1}`,
+    title: `Photo OPA #${i + 1}`
+  }));
 
   return (
     <div className="bg-[#F8F5F0] min-h-screen pb-24">
@@ -26,7 +34,13 @@ export default function Albums() {
         <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {photos.map((src, i) => (
-              <div key={i} className="relative overflow-hidden rounded-2xl shadow-md group cursor-pointer aspect-4/3 bg-gray-100 border border-gray-200/60">
+              <button
+                type="button"
+                key={i}
+                onClick={() => setLightboxIndex(i)}
+                className="relative overflow-hidden rounded-2xl shadow-md group cursor-zoom-in aspect-4/3 bg-gray-100 border border-gray-200/60 text-left focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30"
+                title="Cliquer pour agrandir"
+              >
                 <img
                   src={src}
                   alt={`Photo ${i + 1}`}
@@ -35,15 +49,22 @@ export default function Albums() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <div className="text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i className="fas fa-camera text-[#C39B2E]"></i>
+                    <i className="fas fa-search-plus text-[#C39B2E]"></i>
                     <span>Photo OPA #{i + 1}</span>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </div>
+
+      <ImageLightbox
+        images={lightboxImages}
+        currentIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChange={setLightboxIndex}
+      />
     </div>
   );
 }

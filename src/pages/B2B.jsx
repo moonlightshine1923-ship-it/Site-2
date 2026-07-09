@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageLightbox from '../components/ImageLightbox';
 
 export default function B2B() {
   const { t } = useTranslation();
-  const [mainPhoto, setMainPhoto] = useState('/images/B2B/photo 1.jpg');
 
   const photoIds = [
     1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32
   ];
+
+  const mainHeaderImage = {
+    src: '/images/B2B/photo principale.jpg',
+    alt: t('b2b.title'),
+    title: t('b2b.title')
+  };
+
+  const galleryImages = photoIds.map((id) => ({
+    src: `/images/B2B/photo ${id}.jpg`,
+    alt: `B2B OPA - ${id}`,
+    title: `B2B OPA #${id}`
+  }));
+
+  const [mainPhoto, setMainPhoto] = useState(galleryImages[0]?.src || '');
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const lightboxImages = [mainHeaderImage, ...galleryImages];
+  const selectedGalleryIndex = galleryImages.findIndex((photo) => photo.src === mainPhoto);
 
   return (
     <div className="bg-[#F8F5F0] min-h-screen pb-24">
@@ -28,13 +46,23 @@ export default function B2B() {
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-20 space-y-12">
         {/* PHOTO PRINCIPALE */}
         <div className="flex justify-center">
-          <div className="modern-card bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-gray-100 w-full max-w-5xl">
-            <img
-              src="/images/B2B/photo principale.jpg"
-              alt={t('b2b.title')}
-              className="w-full h-[400px] sm:h-[550px] rounded-2xl object-cover shadow-inner"
-            />
-          </div>
+          <button
+            type="button"
+            onClick={() => setLightboxIndex(0)}
+            className="modern-card bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-gray-100 w-full max-w-5xl cursor-zoom-in group focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30"
+            title="Cliquer pour agrandir"
+          >
+            <div className="relative overflow-hidden rounded-2xl">
+              <img
+                src={mainHeaderImage.src}
+                alt={mainHeaderImage.alt}
+                className="w-full h-[400px] sm:h-[550px] rounded-2xl object-cover shadow-inner group-hover:scale-[1.02] transition duration-500"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center rounded-2xl">
+                <i className="fas fa-search-plus text-white text-4xl opacity-0 group-hover:opacity-100 transition"></i>
+              </div>
+            </div>
+          </button>
         </div>
 
         {/* ARTICLE */}
@@ -79,32 +107,50 @@ export default function B2B() {
 
           {/* IMAGE PRINCIPALE SÉLECTIONNÉE */}
           <div className="flex justify-center mb-8">
-            <div className="w-full max-w-5xl bg-[#F8F5F0] p-3 rounded-2xl border border-gray-200 shadow-inner">
-              <img
-                src={mainPhoto}
-                alt="B2B OPA"
-                className="w-full h-[350px] sm:h-[500px] object-cover rounded-xl transition-all duration-300 shadow-md"
-              />
-            </div>
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(selectedGalleryIndex >= 0 ? selectedGalleryIndex + 1 : 1)}
+              className="w-full max-w-5xl bg-[#F8F5F0] p-3 rounded-2xl border border-gray-200 shadow-inner cursor-zoom-in group focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30"
+              title="Cliquer pour agrandir"
+            >
+              <div className="relative overflow-hidden rounded-xl">
+                <img
+                  src={mainPhoto}
+                  alt="B2B OPA"
+                  className="w-full h-[350px] sm:h-[500px] object-cover rounded-xl transition-all duration-300 shadow-md group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center rounded-xl">
+                  <i className="fas fa-search-plus text-white text-4xl opacity-0 group-hover:opacity-100 transition"></i>
+                </div>
+              </div>
+            </button>
           </div>
 
           {/* MINIATURES */}
           <div className="flex gap-4 overflow-x-auto pb-6 px-2 justify-start scroll-smooth">
-            {photoIds.map((id) => {
-              const imgSrc = `/images/B2B/photo ${id}.jpg`;
-              const isSelected = mainPhoto === imgSrc;
+            {galleryImages.map((photo, index) => {
+              const isSelected = mainPhoto === photo.src;
               return (
-                <img
-                  key={id}
-                  src={imgSrc}
-                  alt={`Thumb ${id}`}
-                  onClick={() => setMainPhoto(imgSrc)}
-                  className={`w-32 h-24 object-cover rounded-2xl cursor-pointer shrink-0 transition-all duration-300 ${
+                <button
+                  type="button"
+                  key={photo.src}
+                  onClick={() => {
+                    setMainPhoto(photo.src);
+                    setLightboxIndex(index + 1);
+                  }}
+                  className={`w-32 h-24 rounded-2xl cursor-zoom-in shrink-0 transition-all duration-300 overflow-hidden focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30 ${
                     isSelected 
                       ? 'border-4 border-[#C39B2E] scale-105 shadow-xl opacity-100 ring-2 ring-[#C39B2E]/30' 
                       : 'opacity-60 hover:opacity-100 hover:scale-105 border border-gray-200'
                   }`}
-                />
+                  title="Cliquer pour agrandir"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
               );
             })}
           </div>
@@ -126,6 +172,13 @@ export default function B2B() {
           </a>
         </div>
       </div>
+
+      <ImageLightbox
+        images={lightboxImages}
+        currentIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChange={setLightboxIndex}
+      />
     </div>
   );
 }

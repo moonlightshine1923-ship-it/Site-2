@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageLightbox from '../components/ImageLightbox';
 
 export default function Conference() {
   const { t, i18n } = useTranslation();
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const photoIds = [1, 2, 3, 4, 6, 7, 8];
+  const galleryImages = photoIds.map((id) => ({
+    src: `/images/Conference/photo ${id}.jpg`,
+    alt: `Conférence de Presse OPA - ${id}`,
+    title: `Photo Conférence #${id}`
+  }));
 
   return (
     <div className="bg-[#F8F5F0] min-h-screen pb-24">
@@ -64,24 +71,40 @@ export default function Conference() {
               id="conferenceGallery"
               className="flex gap-6 overflow-x-auto pb-6 px-4 scroll-smooth"
             >
-              {photoIds.map((id) => (
-                <div key={id} className="shrink-0 group">
-                  <div className="overflow-hidden rounded-3xl shadow-md border border-gray-200/60 bg-gray-100">
+              {galleryImages.map((photo, index) => (
+                <button
+                  type="button"
+                  key={photo.src}
+                  onClick={() => setLightboxIndex(index)}
+                  className="shrink-0 group text-left cursor-zoom-in focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30 rounded-3xl"
+                  title="Cliquer pour agrandir"
+                >
+                  <div className="overflow-hidden rounded-3xl shadow-md border border-gray-200/60 bg-gray-100 relative">
                     <img
-                      src={`/images/Conference/photo ${id}.jpg`}
-                      alt={`Conférence de Presse OPA - ${id}`}
+                      src={photo.src}
+                      alt={photo.alt}
                       className="w-80 h-60 object-cover transform group-hover:scale-110 transition duration-500 ease-out"
                     />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
+                      <i className="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition"></i>
+                    </div>
                   </div>
                   <div className="mt-3 text-center text-xs font-bold text-[#0A2540] uppercase tracking-wider">
-                    Photo Conférence #{id}
+                    {photo.title}
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      <ImageLightbox
+        images={galleryImages}
+        currentIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChange={setLightboxIndex}
+      />
     </div>
   );
 }

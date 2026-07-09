@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageLightbox from '../components/ImageLightbox';
 
 export default function Contribution() {
   const { t, i18n } = useTranslation();
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const photoIds = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29
   ];
+
+  const mainImage = {
+    src: '/images/Contrubution/Contribution opA.jpg',
+    alt: t('contribution.title'),
+    title: t('contribution.title')
+  };
+
+  const galleryImages = photoIds.map((id) => ({
+    src: `/images/Contrubution/photo ${id}.jpg`,
+    alt: `Contribution OPA - ${id}`,
+    title: `${t('contribution.photoLabel')} #${id}`
+  }));
+
+  const lightboxImages = [mainImage, ...galleryImages];
 
   return (
     <div id="contributions-opa" className="bg-[#F8F5F0] min-h-screen pb-24">
@@ -28,13 +44,23 @@ export default function Contribution() {
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-20 space-y-12">
         {/* Image */}
         <div className="flex justify-center">
-          <div className="modern-card bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-gray-100 w-full max-w-4xl">
-            <img
-              src="/images/Contrubution/Contribution opA.jpg"
-              alt={t('contribution.title')}
-              className="w-full h-[350px] sm:h-[500px] rounded-2xl object-cover shadow-inner"
-            />
-          </div>
+          <button
+            type="button"
+            onClick={() => setLightboxIndex(0)}
+            className="modern-card bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-gray-100 w-full max-w-4xl cursor-zoom-in group focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30"
+            title="Cliquer pour agrandir"
+          >
+            <div className="relative overflow-hidden rounded-2xl">
+              <img
+                src={mainImage.src}
+                alt={mainImage.alt}
+                className="w-full h-[350px] sm:h-[500px] rounded-2xl object-cover shadow-inner group-hover:scale-[1.02] transition duration-500"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center rounded-2xl">
+                <i className="fas fa-search-plus text-white text-4xl opacity-0 group-hover:opacity-100 transition"></i>
+              </div>
+            </div>
+          </button>
         </div>
 
         {/* Article */}
@@ -78,24 +104,30 @@ export default function Contribution() {
           {/* Pellicule */}
           <div className="relative">
             <div className="flex gap-6 overflow-x-auto pb-6 px-4 scroll-smooth">
-              {photoIds.map((id) => (
-                <div
-                  key={id}
-                  className="w-80 bg-white rounded-3xl overflow-hidden shadow-md border border-gray-200/60 shrink-0 group hover:shadow-xl transition duration-300"
+              {galleryImages.map((photo, index) => (
+                <button
+                  type="button"
+                  key={photo.src}
+                  onClick={() => setLightboxIndex(index + 1)}
+                  className="w-80 bg-white rounded-3xl overflow-hidden shadow-md border border-gray-200/60 shrink-0 group hover:shadow-xl transition duration-300 text-left cursor-zoom-in focus:outline-none focus:ring-4 focus:ring-[#C39B2E]/30"
+                  title="Cliquer pour agrandir"
                 >
-                  <div className="overflow-hidden h-56 bg-gray-100">
+                  <div className="overflow-hidden h-56 bg-gray-100 relative">
                     <img
-                      src={`/images/Contrubution/photo ${id}.jpg`}
-                      alt={`Contribution OPA - ${id}`}
+                      src={photo.src}
+                      alt={photo.alt}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                     />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
+                      <i className="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition"></i>
+                    </div>
                   </div>
                   <div className="p-4 text-center bg-[#F8F5F0] border-t border-gray-100">
                     <p className="text-[#0A2540] font-bold text-sm">
-                      {t('contribution.photoLabel')} #{id}
+                      {photo.title}
                     </p>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -126,6 +158,13 @@ export default function Contribution() {
           </div>
         </div>
       </div>
+
+      <ImageLightbox
+        images={lightboxImages}
+        currentIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChange={setLightboxIndex}
+      />
     </div>
   );
 }
