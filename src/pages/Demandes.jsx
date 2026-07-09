@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getDemandeObjectOptions, getObjectPlaceholder, getWilayaOptions } from '../data/demandesOptions';
 
 export default function DeposerDemande() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -21,22 +22,9 @@ const [formData, setFormData] = useState({
   priorite: 'Normale'
 });
 
-  // Liste des objets autorisés par le backend
-  const objetsAutorises = [
-    'Demande de contact',
-    'Réclamation',
-    'Demande de renseignement ',
-    'Autre'
-  ];
-
-  const wilayas = [
-    "01 - Adrar", "02 - Chlef", "03 - Laghouat", "04 - Oum El Bouaghi", "05 - Batna", "06 - Béjaïa", "07 - Biskra", "08 - Béchar", "09 - Blida", "10 - Bouira",
-    "11 - Tamanrasset", "12 - Tébessa", "13 - Tlemcen", "14 - Tiaret", "15 - Tizi Ouzou", "16 - Alger", "17 - Djelfa", "18 - Jijel", "19 - Sétif", "20 - Saïda",
-    "21 - Skikda", "22 - Sidi Bel Abbès", "23 - Annaba", "24 - Guelma", "25 - Constantine", "26 - Médéa", "27 - Mostaganem", "28 - M'Sila", "29 - Mascara", "30 - Ouargla",
-    "31 - Oran", "32 - El Bayadh", "33 - Illizi", "34 - Bordj Bou Arréridj", "35 - Boumerdès", "36 - El Tarf", "37 - Tindouf", "38 - Tissemsilt", "39 - El Oued", "40 - Khenchela",
-    "41 - Souk Ahras", "42 - Tipaza", "43 - Mila", "44 - Aïn Defla", "45 - Naâma", "46 - Aïn Témouchent", "47 - Ghardaïa", "48 - Relizane",
-    "49 - El M'Ghair", "50 - El Meniaa", "51 - Ouled Djellal", "52 - Bordj Badji Mokhtar", "53 - Béni Abbès", "54 - In Salah", "55 - In Guezzam", "56 - Touggourt", "57 - Djanet", "58 - El Bayadh"
-  ];
+  const currentLanguage = i18n.resolvedLanguage || i18n.language || 'fr';
+  const wilayas = getWilayaOptions(currentLanguage);
+  const objetsAutorises = getDemandeObjectOptions(currentLanguage);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -198,8 +186,8 @@ const [formData, setFormData] = useState({
                     <select name="wilaya" required value={formData.wilaya} onChange={handleInputChange}
                             className="w-full px-4 py-3.5 border border-gray-200 focus:border-[#C39B2E] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#C39B2E]/20 bg-gray-50/50 focus:bg-white transition">
                       <option value="">{t('deposer_demande.selectionnez_wilaya')}</option>
-                      {wilayas.map((w, idx) => (
-                        <option key={idx} value={w}>{w}</option>
+                      {wilayas.map((w) => (
+                        <option key={w.value} value={w.value}>{w.label}</option>
                       ))}
                     </select>
                   </div>
@@ -209,9 +197,9 @@ const [formData, setFormData] = useState({
                     </label>
                     <select name="titre_demande" required value={formData.titre_demande} onChange={handleInputChange}
                             className="w-full px-4 py-3.5 border border-gray-200 focus:border-[#C39B2E] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#C39B2E]/20 bg-gray-50/50 focus:bg-white transition">
-                      <option value="">Sélectionnez l'objet de votre demande</option>
-                      {objetsAutorises.map((obj, idx) => (
-                        <option key={idx} value={obj}>{obj}</option>
+                      <option value="">{getObjectPlaceholder(currentLanguage)}</option>
+                      {objetsAutorises.map((obj) => (
+                        <option key={obj.value} value={obj.value}>{obj.label}</option>
                       ))}
                     </select>
                   </div>
