@@ -177,9 +177,9 @@ export default function Footer() {
             <div className="flex gap-6">
               <Link to="/statut" className="hover:text-white transition">Mentions légales</Link>
               <Link to="/loi-reglement" className="hover:text-white transition">Règlement intérieur</Link>
-              <a href="#navbar" className="hover:text-[#C39B2E] transition flex items-center gap-1">
-                <span>Retour en haut</span>
-                <i className="fas fa-arrow-up"></i>
+              <a href="#top" onClick={(e) => {e.preventDefault();window.scrollTo({ top: 0, behavior: 'smooth' });}}className="hover:text-[#C39B2E] transition flex items-center gap-1"
+>             <span>Retour en haut</span>
+              <i className="fas fa-arrow-up"></i>
               </a>
             </div>
           </div>

@@ -91,7 +91,6 @@ export default function Contribution() {
         {/* Galerie Photos */}
         <div className="modern-card bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="badge-gold mb-3">Rencontres & Initiatives</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-serif text-[#0A2540]">
               {t('contribution.galleryTitle')}
             </h2>
@@ -137,7 +136,6 @@ export default function Contribution() {
         <div className="modern-card bg-[#061526] text-white p-8 sm:p-12 rounded-3xl shadow-2xl border border-white/10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C39B2E]/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="text-center max-w-3xl mx-auto mb-10 relative z-10">
-            <span className="badge-gold mb-3">Média & Interview</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-serif text-white">
               {t('contribution.videoTitle')}
             </h2>

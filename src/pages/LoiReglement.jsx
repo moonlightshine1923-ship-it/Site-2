@@ -64,9 +64,6 @@ export default function LoiReglement() {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#C39B2E] bg-[#C39B2E]/10 px-3.5 py-1 rounded-full">
-                    Texte Légal #{idx + 1}
-                  </span>
                   <i className="fas fa-file-contract text-gray-300 group-hover:text-[#C39B2E] transition-colors text-lg"></i>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#0A2540] group-hover:text-[#C39B2E] transition-colors leading-snug">

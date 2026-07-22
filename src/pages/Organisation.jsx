@@ -42,9 +42,7 @@ export default function OrganisationPatronatAlgerien() {
 
           {/* COLONNE DROITE */}
           <div className="lg:col-span-7 space-y-6">
-            <span className="text-[#C39B2E] text-sm font-bold uppercase tracking-[3px] bg-[#C39B2E]/10 px-4 py-1.5 rounded-full inline-block">
-              {t('presentation.titre')}
-            </span>
+            
             <div className="space-y-4 text-base md:text-lg text-gray-700 leading-relaxed font-normal">
               <p className="bg-[#F8F5F0] p-5 rounded-2xl border-l-4 border-[#C39B2E]">{t('presentation.paragraphe_1')}</p>
               <p>{t('presentation.paragraphe_2')}</p>
@@ -241,7 +239,7 @@ export default function OrganisationPatronatAlgerien() {
               <div key={num} className="modern-card bg-white p-8 rounded-3xl border border-gray-100 flex flex-col justify-between group hover:shadow-2xl transition duration-500">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-[#C39B2E] bg-[#C39B2E]/10 px-3 py-1 rounded-full">Objectif #{num}</span>
+                   
                     <i className="fas fa-bullseye text-gray-300 group-hover:text-[#C39B2E] transition-colors"></i>
                   </div>
                   <h3 className="text-xl font-bold font-serif text-[#0A2540] mb-3 group-hover:text-[#C39B2E] transition-colors">

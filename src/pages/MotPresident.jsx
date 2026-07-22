@@ -73,7 +73,6 @@ export default function MotPresident() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-serif text-[#0A2540]">Message Officiel</h3>
-                  <p className="text-xs text-gray-500 uppercase tracking-widest">Renouveau Économique & Engagement Patronal</p>
                 </div>
               </div>
 
