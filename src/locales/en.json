@@ -273,7 +273,7 @@
   "sidebar_txt_secu": "Requests from this web portal are directly recorded with a \"Pending\" status and assigned to the \"site\" source in the OPA's internal system.",
   "sidebar_titre_support": "Administrative Support",
   "sidebar_txt_support": "For any technical assistance related to filing applications or membership numbers:",
-  "erreur_reseau": "Network error: Unable to send request to the opa_db database."
+  "erreur_reseau": "Network error: Unable to send request to the database."
 },
   "devenirMembre": {
     "title": "Become a Member",

@@ -274,7 +274,7 @@
   "sidebar_txt_secu": "Bu web portalından gelen talepler doğrudan \"Beklemede\" durumuyla kaydedilir ve OPA'nın dahili sistemindeki \"site\" kaynağına atanır.",
   "sidebar_titre_support": "Yönetim Desteği",
   "sidebar_txt_support": "Dosya yükleme veya üye numarası ile ilgili her türlü teknik destek için:",
-  "erreur_reseau": "Ağ hatası: Talep opa_db veritabanına gönderilemedi."
+  "erreur_reseau": "Ağ hatası: Talep veritabanına gönderilemedi."
 },
   "devenirMembre": {
     "title": "Üye Olun",

@@ -273,7 +273,7 @@
   "sidebar_txt_secu": "从该网页门户提交的申请将直接以“待处理”状态记录，并在 OPA 内部系统中归入“网站”来源。",
   "sidebar_titre_support": "行政技术支持",
   "sidebar_txt_support": "若有任何关于文件提交或会员编号的技术支持需求：",
-  "erreur_reseau": "网络错误：无法将申请发送至 opa_db 数据库。"
+  "erreur_reseau": "网络错误：无法将申请发送至 数据库。"
 },
   "devenirMembre": {
     "title": "加入我们",

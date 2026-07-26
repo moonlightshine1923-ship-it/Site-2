@@ -273,7 +273,7 @@
   "sidebar_txt_secu": "Las solicitudes enviadas desde este portal web se registran directamente con el estado \"En espera\" y se asignan al origen \"sitio\" en el sistema interno de la OPA.",
   "sidebar_titre_support": "Soporte de Administración",
   "sidebar_txt_support": "Para cualquier asistencia técnica relacionada con la entrega de expedientes o su número de afiliado:",
-  "erreur_reseau": "Error de red: No se pudo enviar la solicitud a la base de datos opa_db."
+  "erreur_reseau": "Error de red: No se pudo enviar la solicitud a la base de datos."
 },
   "devenirMembre": {
     "title": "Hacerse Miembro",

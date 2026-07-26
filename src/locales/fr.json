@@ -83,7 +83,7 @@
   "sidebar_txt_secu": "Les demandes issues de ce portail web sont directement enregistrées avec le statut \"En attente\" et affectées à la source \"site\" dans le système interne de l'OPA.",
   "sidebar_titre_support": "Support Administration",
   "sidebar_txt_support": "Pour toute assistance technique liée au dépôt des dossiers ou au matricule :",
-  "erreur_reseau": "Erreur réseau : Impossible d'envoyer la demande à la base de données opa_db."
+  "erreur_reseau": "Erreur réseau : Impossible d'envoyer la demande à la base de données."
 },
   "home": {
     "presidentAlt": "Président de l'OPA - M. Sidi Said Abderrahmen",

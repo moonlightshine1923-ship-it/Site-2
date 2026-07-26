@@ -184,7 +184,7 @@
   "sidebar_txt_secu": "Anträge über dieses Webportal werden direkt mit dem Status \"In Wartestellung\" erfasst und im internen System der OPA der Quelle \"Website\" zugeordnet.",
   "sidebar_titre_support": "Support Verwaltung",
   "sidebar_txt_support": "Für technische Unterstützung bei der Einreichung von Unterlagen oder Fragen zur Mitgliedsnummer:",
-  "erreur_reseau": "Netzwerkfehler: Der Antrag konnte nicht an die Datenbank opa_db gesendet werden."
+  "erreur_reseau": "Netzwerkfehler: Der Antrag konnte nicht an die Datenbank gesendet werden."
 },
   "devenirMembre": {
     "title": "Mitglied werden",

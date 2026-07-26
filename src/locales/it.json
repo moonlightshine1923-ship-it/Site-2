@@ -273,7 +273,7 @@
   "sidebar_txt_secu": "Le richieste provenienti da questo portale web vengono registrate direttamente con lo stato \"In attesa\" e assegnate alla fonte \"sito\" nel sistema interno dell'OPA.",
   "sidebar_titre_support": "Supporto Amministrativo",
   "sidebar_txt_support": "Per qualsiasi assistenza tecnica relativa all'invio dei documenti o al numero di matricola:",
-  "erreur_reseau": "Errore di rete: Impossibile inviare la richiesta al database opa_db."
+  "erreur_reseau": "Errore di rete: Impossibile inviare la richiesta al database."
 },
   "devenirMembre": {
     "title": "Diventa un Membro",
